@@ -12,8 +12,7 @@
     timeSinceObstacle = 0.0f;
 }
 
--(void)update:(CCTime)delta
-{
+-(void)update:(CCTime)delta{
     // this will be run every frame.
     // delta is the time that has elapsed since the last time it was run. This is usually 1/60, but can be bigger if the game slows down
     
@@ -21,8 +20,7 @@
     timeSinceObstacle += delta; // delta is approximately 1/60th of a second
     
     // Check to see if two seconds have passed
-    if (timeSinceObstacle > 2.0f)
-    {
+    if (timeSinceObstacle > 2.0f){
         // Add a new obstacle
         [self addObstacle];
         
@@ -34,5 +32,29 @@
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     [character flap];
 }
+
+- (void)showScore
+{
+    _scoreLabel.string = [NSString stringWithFormat:@"%d", points];
+    _scoreLabel.visible = true;
+}
+
+
+#pragma mark - Obstacle Spawning
+
+- (void)addObstacle{
+    Obstacle *obstacle = (Obstacle *)[CCBReader load:@"Obstacle"];
+    CGPoint screenPosition = [self convertToWorldSpace:ccp(380, 0)];
+    CGPoint worldPosition = [physicsNode convertToNodeSpace:screenPosition];
+    obstacle.position = worldPosition;
+    [obstacle setupRandomPosition];
+    obstacle.zOrder = DrawingOrderPipes;
+    [physicsNode addChild:obstacle];
+    [_obstacles addObject:obstacle];
+}
+
+
+
+
 
 @end

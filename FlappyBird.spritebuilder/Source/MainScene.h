@@ -13,8 +13,5 @@
 
 -(void) gameOver;
 
--(void) addObstacle;
-
--(void) showScore;
 
 @end

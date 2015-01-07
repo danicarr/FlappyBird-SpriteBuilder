@@ -14,14 +14,6 @@
     CCNode *_ground2;
     NSArray *_grounds;
     
-    CCNode *_cloud1;
-    CCNode *_cloud2;
-    NSArray *_clouds;
-    
-    CCNode *_bush1;
-    CCNode *_bush2;
-    NSArray *_bushes;
-    
     NSTimeInterval _sinceTouch;
     
     NSMutableArray *_obstacles;
@@ -40,8 +32,6 @@
     self.userInteractionEnabled = TRUE;
     
     _grounds = @[_ground1, _ground2];
-    _clouds = @[_cloud1, _cloud2];
-    _bushes = @[_bush1, _bush2];
     
     for (CCNode *ground in _grounds) {
         // set collision txpe
@@ -132,10 +122,12 @@
     
     if (character.physicsBody.allowsRotation) {
         float angularVelocity = clampf(character.physicsBody.angularVelocity, -2.f, 1.f);
-        character.physicsBody.angularVelocity = angularVelocity;}
+        character.physicsBody.angularVelocity = angularVelocity;
+    }
     
     if ((_sinceTouch > 0.5f)) {
-        [character.physicsBody applyAngularImpulse:-40000.f*delta];}
+        [character.physicsBody applyAngularImpulse:-40000.f*delta];
+    }
     
     physicsNode.position = ccp(physicsNode.position.x - (character.physicsBody.velocity.x * delta), physicsNode.position.y);
     
@@ -148,10 +140,9 @@
         
         // if the left corner is one complete width off the screen, move it to the right
         if (groundScreenPosition.x <= (-1 * ground.contentSize.width)) {
-            ground.position = ccp(ground.position.x + 2 * ground.contentSize.width, ground.position.y);}
-            }
-    
-    
+            ground.position = ccp(ground.position.x + 2 * ground.contentSize.width, ground.position.y);
+        }
+    }
     
     NSMutableArray *offScreenObstacles = nil;
     

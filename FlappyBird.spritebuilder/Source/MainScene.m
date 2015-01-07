@@ -152,6 +152,7 @@
         if (groundScreenPosition.x <= (-1 * ground.contentSize.width)) {
             ground.position = ccp(ground.position.x + 2 * ground.contentSize.width, ground.position.y);
         }
+
     }
     
     NSMutableArray *offScreenObstacles = nil;
@@ -185,8 +186,6 @@
             
         }
     }
-    
-    
     
     // move and loop the bushes
     for (CCNode *bush in _bushes) {

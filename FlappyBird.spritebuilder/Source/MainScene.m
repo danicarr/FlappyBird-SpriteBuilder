@@ -95,7 +95,7 @@
 
 #pragma mark - Obstacle Spawning
 
-- (void)addObstacle {
+- (void)addObstacle{
     Obstacle *obstacle = (Obstacle *)[CCBReader load:@"Obstacle"];
     CGPoint screenPosition = [self convertToWorldSpace:ccp(380, 0)];
     CGPoint worldPosition = [physicsNode convertToNodeSpace:screenPosition];
